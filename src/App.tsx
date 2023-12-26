@@ -1,12 +1,15 @@
-import { Button } from '@/components/ui/button'
+import { Header } from '@/components/header'
+import { Card } from '@/components/ui/card'
+
+import s from './App.module.scss'
 
 export function App() {
   return (
     <div>
-      <Button as={'a'} href={'/'} variant={'primary'}>
-        1
-      </Button>
-      <Button variant={'secondary'}>1</Button>
+      <Header />
+      <div className={s.layout}>
+        <Card />
+      </div>
     </div>
   )
 }
