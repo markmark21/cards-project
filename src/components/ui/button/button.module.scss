@@ -2,110 +2,103 @@
   all: unset;
 
   cursor: pointer;
+  user-select: none;
 
-  width: 150px;
-  padding: 10px;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
 
-  color: white;
+  box-sizing: border-box;
+  padding: 0.375rem 1.75rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 24px;
   text-align: center;
+  text-decoration: none;
 
-  background-color: #9747ff;
-  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.25rem;
+
+  transition:
+    var(--transition-duration-basic) background-color,
+    var(--transition-duration-basic) color;
 
   &:focus-visible {
-    outline: 2px solid var(--color-info-500);
+    outline: var(--outline-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &.fullWidth {
+    justify-content: center;
+    width: 100%;
   }
 }
 
 .primary {
-  width: 100px;
+  composes: button;
+  color: var(--color-light-100);
   background-color: var(--color-accent-500);
+  box-shadow: 0 4px 18px rgb(140 97 255 / 35%);
 
-  &:hover {
-    background-color: #a280ff;
+  &:hover:enabled {
+    background-color: var(--color-accent-300);
   }
 
-  &:active {
+  &:active:enabled {
     background-color: var(--color-accent-700);
-  }
-
-  &:focus-visible {
-    background-color: #8c61ff;
-  }
-
-  &:disabled {
-    background-color: #382766;
   }
 }
 
 .secondary {
-  background-color: #4c4c4c;
+  composes: button;
+  color: var(--color-light-100);
+  background-color: var(--color-dark-300);
+  box-shadow: 0 2px 10px 0 #6d6d6d40;
 
-  &:hover {
-    background-color: #808080;
+  &:hover:enabled {
+    background-color: var(--color-dark-100);
   }
 
-  &:active {
-    background-color: #333;
-  }
-
-  &:focus-visible {
-    background-color: #4c4c4c;
-  }
-
-  &:disabled {
-    background-color: #4c4c4c;
+  &:active:enabled {
+    background-color: var(--color-dark-500);
   }
 }
 
 .tertiary {
-  width: 120px;
-  color: #8c61ff;
-  background-color: transparent;
-  border: 2px solid;
+  composes: button;
+  color: var(--color-accent-500);
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-accent-700);
 
-  &:hover {
-    background-color: #333;
+  &:hover:enabled {
+    background-color: var(--color-dark-500);
   }
 
-  &:active {
-    background-color: #382766;
-  }
-
-  &:disabled {
-    font-family: Roboto, sans-serif;
-    font-weight: 700;
-    color: #382766;
-
-    background-color: transparent;
-    border: 2px solid #382766;
+  &:active:enabled {
+    background-color: var(--color-accent-900);
   }
 }
 
 .link {
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-  color: #8c61ff;
-  background-color: transparent;
+  composes: button;
 
-  &:hover {
-    color: #a280ff;
-  }
+  padding: 0.375rem 0;
 
-  &:active {
-    color: #704ecc;
-  }
-
-  &:focus-visible {
-    width: 100px;
-    border-radius: 100px;
-  }
-
-  &:disabled {
-    color: #382766;
-  }
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+  color: var(--color-accent-500);
+  text-decoration-line: underline;
 }
 
-.fullWidth {
-  width: 100%;
+.icon {
+  border-radius: 9999px;
 }
