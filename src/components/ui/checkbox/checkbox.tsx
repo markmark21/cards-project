@@ -18,6 +18,7 @@ export type CheckboxProps = {
   position?: 'left'
   required?: boolean
 }
+
 export const Checkbox: FC<CheckboxProps> = ({
   checked,
   className,
@@ -38,7 +39,7 @@ export const Checkbox: FC<CheckboxProps> = ({
 
   return (
     <div className={classNames.container}>
-      <LabelRadix.Root>
+      <LabelRadix.Root asChild>
         <Typography as={'label'} className={classNames.label} variant={'body2'}>
           <div className={classNames.buttonWrapper}>
             <CheckboxRadix.Root
@@ -50,7 +51,7 @@ export const Checkbox: FC<CheckboxProps> = ({
               required={required}
             >
               {checked && (
-                <CheckboxRadix.Indicator>
+                <CheckboxRadix.Indicator className={classNames.indicator} forceMount>
                   <Check />
                 </CheckboxRadix.Indicator>
               )}
