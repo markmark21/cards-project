@@ -25,7 +25,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   disabled,
   id,
   label,
-                                              onValueChange,
+  onValueChange,
   position,
   required,
 }) => {
