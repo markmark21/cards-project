@@ -5,7 +5,7 @@ import { Checkbox, CheckboxProps } from '@/components'
 type Props = {
   control: any
   name: string
-} & CheckboxProps
+} & Omit<CheckboxProps, 'checked' | 'onValueChange'>
 export const ControlledCheckbox = ({ control, name, ...rest }: Props) => {
   const {
     field: { onChange, value },
@@ -14,5 +14,5 @@ export const ControlledCheckbox = ({ control, name, ...rest }: Props) => {
     name,
   })
 
-  return <Checkbox checked={value} label={name} onValueChange={onChange} {...rest} />
+  return <Checkbox {...rest} checked={value} label={'remember me'} onValueChange={onChange} />
 }
