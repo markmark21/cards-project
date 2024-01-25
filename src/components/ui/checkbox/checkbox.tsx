@@ -14,7 +14,7 @@ export type CheckboxProps = {
   disabled?: boolean
   id?: string
   label?: string
-  onChange?: (checked: boolean) => void
+  onValueChange?: (checked: boolean) => void
   position?: 'left'
   required?: boolean
 }
@@ -25,7 +25,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   disabled,
   id,
   label,
-  onChange,
+                                              onValueChange,
   position,
   required,
 }) => {
@@ -47,7 +47,7 @@ export const Checkbox: FC<CheckboxProps> = ({
               className={classNames.root}
               disabled={disabled}
               id={id}
-              onCheckedChange={onChange}
+              onCheckedChange={onValueChange}
               required={required}
             >
               {checked && (
