@@ -1,15 +1,16 @@
 import { useController, useForm } from 'react-hook-form'
 
 import { Button, Checkbox, TextField } from '@/components'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
+const loginSchema = z.object({
+  email: z.string().email().min(1),
+  password: z.string().min(3),
+  rememberMe: z.boolean(),
+})
 
-const emailRegex =
-  /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/
+type FormValues = z.infer<typeof loginSchema>
 
 export const LoginForm = () => {
   const {
@@ -17,7 +18,14 @@ export const LoginForm = () => {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>()
+  } = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      rememberMe: false,
+    },
+    resolver: zodResolver(loginSchema),
+  })
 
   console.log(errors)
 
@@ -35,18 +43,9 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <TextField {...register('email')} errorMessage={errors.email?.message} label={'email'} />
       <TextField
-        {...register('email', {
-          pattern: { message: 'Invalid email', value: emailRegex },
-          required: 'Email is required',
-        })}
-        errorMessage={errors.email?.message}
-        label={'email'}
-      />
-      <TextField
-        {...register('password', {
-          minLength: { message: 'Password should be at least 3 characters long', value: 3 },
-        })}
+        {...register('password')}
         errorMessage={errors.password?.message}
         label={'password'}
       />
