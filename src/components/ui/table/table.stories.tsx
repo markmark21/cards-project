@@ -18,7 +18,7 @@ import {
 
 export default {
   component: Table,
-  title: 'Components/Table',
+  title: 'Components/UI/Table',
 } as Meta<typeof Table>
 
 export const Default = {
